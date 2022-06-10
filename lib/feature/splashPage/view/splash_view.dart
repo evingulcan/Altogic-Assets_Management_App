@@ -1,4 +1,4 @@
-import 'package:assets_management_app/feature/registerPage/view/register_view.dart';
+import 'package:assets_management_app/feature/login_register_page/view/login_register_view.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,10 +16,11 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _navigatetohome() async {
-    await Future.delayed(Duration(seconds: 4), () {});
+    await Future.delayed(const Duration(seconds: 4), () {});
 
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => RegisterPage()));
+    // ignore: use_build_context_synchronously
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => const LoginRegisterPage()));
   }
 
   @override
@@ -29,9 +30,9 @@ class _SplashScreenState extends State<SplashScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Assogic",
+          const Text("Assogic",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Image.asset("assets/img/splashlogo.png"),

@@ -1,10 +1,11 @@
-import 'package:assets_management_app/core/app_colors.dart';
+import 'package:assets_management_app/feature/loginPage/view/login_view.dart';
+import 'package:assets_management_app/feature/registerPage/view/register_view.dart';
 import 'package:assets_management_app/products/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 class LoginRegisterPage extends StatefulWidget {
-  LoginRegisterPage({Key? key}) : super(key: key);
+  const LoginRegisterPage({Key? key}) : super(key: key);
 
   @override
   State<LoginRegisterPage> createState() => _LoginRegisterPageState();
@@ -42,7 +43,10 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
             ),
             SocialLoginButton(
               butonText: 'Login',
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()));
+              },
               butonColor: Colors.deepPurple,
             ),
             const SizedBox(
@@ -57,7 +61,12 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
             ),
             SocialLoginButton(
               butonText: 'Register',
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const RegisterPage()));
+              },
               butonColor: Colors.black,
             ),
           ]),

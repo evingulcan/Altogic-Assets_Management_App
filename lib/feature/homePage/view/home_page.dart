@@ -1,7 +1,6 @@
-import 'package:assets_management_app/feature/homePage/model/category_model.dart';
-
+import 'package:assets_management_app/products/widgets/container_widget.dart';
+import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,90 +10,149 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<CategoryCardModel> _selectedCategories = [];
-  List<CategoryCardModel> categories = [
-    CategoryCardModel("All", true),
-    CategoryCardModel("Computers", false),
-    CategoryCardModel("Phones", false),
-    CategoryCardModel("Other Devices", false),
-  ];
+  int _currentIndex = 0;
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-            height: context.dynamicHeight(0.05),
-          ),
-          Image.asset('assets/img/kucuklogo.png'),
-          SizedBox(
-            height: context.dynamicHeight(0.25),
-          ),
-          SizedBox(
-            height: context.height * 0.05,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: categories.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: context.paddingLow.left),
-                  child: InkWell(
-                    onTap: () => _selectCategorie(index),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: (categories[index].selected)
-                            ? Colors.black
-                            : Colors.black.withOpacity(0.4),
-                        borderRadius: context.lowBorderRadius,
-                      ),
-                      child: Padding(
-                        padding: context.paddingLow.copyWith(
-                          right: context.paddingLow.right * 2,
-                          left: context.paddingLow.left * 2,
-                        ),
-                        child: Center(
-                          child: Text(
-                            categories[index].category,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontStyle: FontStyle.normal,
-                              fontSize: 14.0,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          elevation: 0.0,
+          backgroundColor: Colors.white,
+          title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.menu,
+                      color: Colors.black,
+                    )),
+                Image.asset('assets/img/kucuklogo.png'),
+                Container(),
+              ]),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: onTabTapped,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.computer),
+              label: 'Assets',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Account',
+            ),
+          ],
+        ),
+        body: DefaultTabController(
+          length: 4,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const Padding(
+                padding: EdgeInsets.only(left: 10, top: 9.0),
+                child: Text(
+                  'Randevum Assets',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
+                ),
+              ),
+              ButtonsTabBar(
+                radius: 100,
+                contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+                borderWidth: 1,
+                borderColor: Colors.transparent,
+                backgroundColor: Colors.deepPurple,
+                unselectedLabelStyle: const TextStyle(color: Colors.black),
+                labelStyle: const TextStyle(color: Colors.white),
+                height: 50,
+                tabs: const [
+                  Tab(
+                    text: "All",
+                  ),
+                  Tab(
+                    text: "Computers",
+                  ),
+                  Tab(
+                    text: "Phones",
+                  ),
+                  Tab(
+                    text: "Other Device",
+                  ),
+                ],
+              ),
+              Expanded(
+                child: TabBarView(
+                  children: <Widget>[
+                    SingleChildScrollView(
+                      child: Column(
+                        children: const [
+                          ContainerWidget(
+                              name: 'Macbook Air', text: 'Hakan Çelik'),
+                          ContainerWidget(
+                              name: 'Macbook Air', text: 'Hakan Çelik'),
+                          ContainerWidget(
+                              name: 'Macbook Air', text: 'Hakan Çelik'),
+                        ],
                       ),
                     ),
-                  ),
-                );
-              },
-            ),
+                    SingleChildScrollView(
+                      child: Column(
+                        children: const [
+                          ContainerWidget(
+                              name: 'Macbook Air', text: 'Hakan Çelik'),
+                          ContainerWidget(
+                              name: 'Macbook Air', text: 'Hakan Çelik'),
+                          ContainerWidget(
+                              name: 'Macbook Air', text: 'Hakan Çelik'),
+                        ],
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      child: Column(
+                        children: const [
+                          ContainerWidget(
+                              name: 'Macbook Air', text: 'Hakan Çelik'),
+                          ContainerWidget(
+                              name: 'Macbook Air', text: 'Hakan Çelik'),
+                          ContainerWidget(
+                              name: 'Macbook Air', text: 'Hakan Çelik'),
+                        ],
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      child: Column(
+                        children: const [
+                          ContainerWidget(
+                              name: 'Macbook Air', text: 'Hakan Çelik'),
+                          ContainerWidget(
+                              name: 'Macbook Air', text: 'Hakan Çelik'),
+                          ContainerWidget(
+                              name: 'Macbook Air', text: 'Hakan Çelik'),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
-  }
-
-  _selectCategorie(index) {
-    if (_selectedCategories.isNotEmpty) {
-      if (categories[index].category == _selectedCategories.first.category) {
-        setState(() {
-          categories[index].selected = false;
-          _selectedCategories.remove(categories[index]);
-        });
-      }
-    } else {
-      categories[index].selected = !categories[index].selected;
-      setState(() {});
-      (categories[index].selected)
-          ? _selectedCategories.add(categories[index])
-          : _selectedCategories.remove(categories[index]);
-      if (_selectedCategories.isEmpty) {
-      } else {}
-      setState(() {});
-    }
+        ));
   }
 }

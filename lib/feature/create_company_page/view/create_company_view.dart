@@ -1,3 +1,4 @@
+import 'package:assets_management_app/feature/homePage/view/home_page.dart';
 import 'package:assets_management_app/products/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
@@ -27,13 +28,19 @@ class _CreateCompanyPageState extends State<CreateCompanyPage> {
             yukseklik: 90,
             radius: 80,
             butonText: 'Create For Your Company',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const HomePage()));
+            },
           ),
           SocialLoginButton(
             butonColor: Colors.deepPurple,
             butonText: 'Join to Company',
             yukseklik: 90,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const HomePage()));
+            },
           ),
         ],
       ),
